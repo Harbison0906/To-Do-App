@@ -8,12 +8,18 @@ const router = express.Router();
 
 // Get all tasks for the user
 router.get('/', async (req, res) => {
+  const id = Number(req.params.id)
   try {
-    const tasks = await db.tasks.all()
-    res.json(tasks);
+    if (id) {
+      const [task] = await db.tasks.one(id);
+      res.json(task);
+    } else {
+      const tasks = await db.tasks.all()
+      res.json(tasks);
+    }
   } catch (error) {
     console.log(error);
-    res.status(500).json({message: 'bad code', error});
+    res.status(500).json({ message: 'bad code', error });
   }
 })
 
@@ -25,7 +31,7 @@ router.put('/', isLoggedIn, async (req: ReqUser, res) => {
     res.json(result);
   } catch (error) {
     console.log(error);
-    res.status(500).json({message: 'bad code', error});
+    res.status(500).json({ message: 'bad code', error });
   }
 })
 
@@ -38,7 +44,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
     res.json('Task updated');
   } catch (error) {
     console.log(error);
-    res.status(500).json({message: 'bad code', error});
+    res.status(500).json({ message: 'bad code', error });
   }
 })
 
@@ -51,7 +57,7 @@ router.delete('/:id', isLoggedIn, async (req: ReqUser, res) => {
     res.json('Task deleted!');
   } catch (error) {
     console.log(error);
-    res.status(500).json({message: 'bad code', error});
+    res.status(500).json({ message: 'bad code', error });
   }
 })
 
