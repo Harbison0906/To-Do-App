@@ -1,27 +1,26 @@
+//@ts-nocheck
 import * as React from 'react';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom'
+import Login from './views/Login';
+import Register from './views/Register';
+import Home from './views/Home';
 
-const App = (props: AppProps) => {
-	const [greeting, setGreeting] = React.useState<string>('');
 
-	React.useEffect(() => {
-		(async () => {
-			try {
-				const res = await fetch('/api/sup');
-				const greeting = await res.json();
-				setGreeting(greeting);
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
 
-	return (
-		<div className="min-vh-100 d-flex justify-content-center align-items-center">
-			<h1 className="display-1">Sup {greeting}!</h1>
-		</div>
-	);
-};
 
-interface AppProps {}
+export default class App extends React.Component {
 
-export default App;
+	render() {
+		return (
+			<BrowserRouter>
+				<Switch>
+					<Route exact path= "/login" component={Login}/>
+					<Route exact path= "/register" component={Register}/>
+					<Route exact path= "/" component={Home}/>
+				</Switch>
+			</BrowserRouter>
+		)
+	}
+
+}
+
