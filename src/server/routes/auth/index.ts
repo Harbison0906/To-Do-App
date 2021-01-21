@@ -1,6 +1,6 @@
 import * as express from 'express';
-import loginRouter from '/login';
-import registerRouter from '/register';
+import loginRouter from './login';
+import registerRouter from './register';
 
 const router = express.Router();
 

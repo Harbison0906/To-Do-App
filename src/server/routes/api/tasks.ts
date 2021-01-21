@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
       const [task] = await db.tasks.one(id);
       res.json(task);
     } else {
-      const tasks = await db.tasks.all()
+      const tasks = await db.tasks.all(id)
       res.json(tasks);
     }
   } catch (error) {

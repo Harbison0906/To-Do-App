@@ -1,12 +1,11 @@
 import { Query } from '../../db';
 
 const all = () => Query('');
-const one = () => Query('', []);
-const find = (column: string, value: string) => Query('SELECT * FROM Users WHERE ??=?', [column, value]);
-const insert = (newUser: object) => Query('INSERT INTO User SET ?', [newUser]);
-const update = () => Query('', []);
+const findOne = (id: number, token: string) => Query('SELECT * FROM Tokens WHERE id=? AND token=?', [id, token]);
+const insert = (userid: number) => Query('INSERT INTO Tokens(userid) VALUE(?)', [userid]);
+const update = (id: number, token: string) => Query('UPDATE Tokens SET token=? WHERE id=?', [token, id]);
 const destroy = () => Query('', []);
 
 
 
-export default { all, one, find, insert, update, destroy }
+export default { all, findOne, insert, update, destroy }
