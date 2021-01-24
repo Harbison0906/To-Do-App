@@ -1,14 +1,4 @@
-export interface IBook {
-  id?: string;
-  categoryid?: string;
-  title?: string;
-  author?: string;
-  price?: number;
-  _created?: number;
-  name?: string;
-}
-
-export interface ICategories {
+export interface ITasks {
   id?: string;
   name?: string;
 }

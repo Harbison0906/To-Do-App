@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-interface HomeState {}
-interface HomeProps extends RouteComponentProps {}
+interface TasksState {}
+interface TasksProps extends RouteComponentProps {}
 
 
-export default class Home extends React.Component <HomeProps, HomeState> {
-  constructor(props: HomeProps) {
+export default class Tasks extends React.Component <TasksProps, TasksState> {
+  constructor(props: TasksProps) {
     super(props)
     this.state = {};
   }
@@ -22,7 +22,7 @@ export default class Home extends React.Component <HomeProps, HomeState> {
       <main className="container">
         <section className="row mt-5">
           <div className="col-12">
-            <h1 className="text-center">Home View</h1>
+            <h1 className="text-center">Tasks View</h1>
           </div>
         </section>
       </main>
