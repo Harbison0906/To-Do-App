@@ -7,7 +7,19 @@ const router = express.Router();
 
 
 // Get all tasks for the user
-router.get('/', async (req, res) => {
+// req.user.id represents whoever is logged in
+router.get('/user_tasks', isLoggedIn, async (req: ReqUser, res) => {
+  const userid = req.user.id;
+  try {
+    const tasks = await db.tasks.getForUser(userid);
+    res.json(tasks);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'bad code', error});
+  }
+})
+
+router.get('/:id', async (req, res) => {
   const id = Number(req.params.id)
   try {
     if (id) {
@@ -40,7 +52,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   const id = Number(req.params.id);
   const task = req.body;
   try {
-    await db.tasks.update(task, id);
+    await db.tasks.update(id, task);
     res.json('Task updated');
   } catch (error) {
     console.log(error);

@@ -8,6 +8,8 @@ passport.use(new BearerStrategy.Strategy( async (token, done) => {
   try {
     let payload = await validToken(token);
     let [user] = await db.users.find('id', payload.userid);
+    console.log(payload)
+    console.log(user);
     if (user) {
       delete user.password;
       done(null, user); //creates req.user
