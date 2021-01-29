@@ -36,10 +36,11 @@ router.get('/:id', async (req, res) => {
 })
 
 // Add a task
-router.put('/', isLoggedIn, async (req: ReqUser, res) => {
+router.post('/', isLoggedIn, async (req: ReqUser, res) => {
+  const userid = req.user.id;
   const task = req.body;
   try {
-    const result = await db.tasks.insert(task)
+    const result = await db.tasks.insert(task.name, userid)
     res.json(result);
   } catch (error) {
     console.log(error);
@@ -64,8 +65,9 @@ router.put('/:id', isLoggedIn, async (req, res) => {
 // Delete task
 router.delete('/:id', isLoggedIn, async (req: ReqUser, res) => {
   const id = Number(req.params.id);
+  const userid = req.user.id;
   try {
-    await db.tasks.destroy(id);
+    await db.tasks.destroy(id, userid);
     res.json('Task deleted!');
   } catch (error) {
     console.log(error);
