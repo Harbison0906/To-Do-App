@@ -20,6 +20,7 @@ router.get('/user_tasks/', isLoggedIn, async (req: ReqUser, res) => {
   }
 })
 
+// get one task
 router.get('/:id', isLoggedIn, async (req: ReqUser, res) => {
   const userid = req.user.id;
   const id = Number(req.params.id)
@@ -52,7 +53,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   const id = Number(req.params.id);
   const task = req.body;
   try {
-    await db.tasks.update(id, task);
+    await db.tasks.update(id, task.name);
     res.json('Task updated');
   } catch (error) {
     console.log(error);

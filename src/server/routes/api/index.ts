@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as passport from 'passport';
 import tasksRouter from './tasks';
+import userRouter from './users';
 
 const router = express.Router();
 
@@ -12,6 +13,7 @@ router.use((req, res, next) => {
 })
 
 router.use('/tasks', tasksRouter);
+router.use('/users', userRouter);
 
 
 export default router;
