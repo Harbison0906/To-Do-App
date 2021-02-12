@@ -18,8 +18,9 @@ export default class Tasks extends React.Component<TasksProps, TasksState> {
   }
 
   async componentDidMount() {
-    const tasks = await json('/api/tasks', 'GET');
+    const tasks = await json('/api/tasks/user_tasks', 'GET');
     this.setState({ tasks });
+    console.log(tasks);
   }
 
 
@@ -32,9 +33,12 @@ export default class Tasks extends React.Component<TasksProps, TasksState> {
             <>
               {this.state.tasks.map(task => {
                 return (
-                  <ul className="list-group">
-                    <li className="list-group-item">{task.name}</li>
-                  </ul>
+                  <div className="card">
+                    <div className="card-body">
+                      {task.name}
+                    </div>
+                  </div>
+
                 )
               })}
             </>

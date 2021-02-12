@@ -13,7 +13,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   constructor(props: LoginProps) {
     super(props)
     this.state = {
-      email: 'test@test.com',
+      email: 'user@test.com',
       password: 'password123'
     };
   }
@@ -24,8 +24,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     try {
       if(result) {
         SetAccessToken(result.token, {userid: result.userid, role: result.role});
-        console.log(result);
-        this.props.history.push('/Tasks')
+        this.props.history.push('/tasks')
       }
     } catch (error) {
       throw error;

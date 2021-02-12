@@ -20,7 +20,7 @@ export default class App extends React.Component {
 					<Route exact path= "/login" component={Login}/>
 					<Route exact path= "/register" component={Register}/>
 					<Route exact path= "/profile" component={Profile}/>
-					<Route exact path= "/" component={Tasks}/>
+					<Route exact path= "/tasks" component={Tasks}/>
 				</Switch>
 			</BrowserRouter>
 		)
