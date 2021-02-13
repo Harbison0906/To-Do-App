@@ -33,12 +33,12 @@ export default class Tasks extends React.Component<TasksProps, TasksState> {
             <>
               {this.state.tasks.map(task => {
                 return (
-                  <div className="card">
+                  <div className="card m-2" key={task.id}>
                     <div className="card-body">
                       {task.name}
                     </div>
+                    <Link to={`/task_details/${task.id}`}>Details</Link>
                   </div>
-
                 )
               })}
             </>
