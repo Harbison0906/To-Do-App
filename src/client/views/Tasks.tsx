@@ -2,7 +2,6 @@ import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { json } from '../utils/api';
 import { ITask } from '../utils/interfaces';
-import AddTask from '../components/addTask';
 
 interface TasksState {
   tasks: ITask[]
@@ -31,7 +30,6 @@ export default class Tasks extends React.Component<TasksProps, TasksState> {
         <section className="row mt-5">
           <div className="col-12">
             <h1 className="text-center">Tasks View</h1>
-            <AddTask />
             <>
               {this.state.tasks.map(task => {
                 return (
