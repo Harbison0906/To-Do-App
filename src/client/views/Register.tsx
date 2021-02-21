@@ -14,8 +14,8 @@ export default class Register extends React.Component<RegisterProps, RegisterSta
   constructor(props: RegisterProps) {
     super(props)
     this.state = {
-      name: 'test',
-      email: 'test@test.com',
+      name: 'user',
+      email: 'user@test.com',
       password: 'password123'
     };
   }
@@ -27,7 +27,7 @@ export default class Register extends React.Component<RegisterProps, RegisterSta
       if (result) {
         SetAccessToken(result.token, { userid: result.userid, role: result.role });
         console.log(result);
-        this.props.history.push('/Tasks');
+        this.props.history.push('/new_task');
       }
     } catch (error) {
       throw error;
@@ -38,27 +38,30 @@ export default class Register extends React.Component<RegisterProps, RegisterSta
   render() {
     return (
       <main className="container">
-        <section className="row mt-5">
+        <section className="row mt-5 justify-content-center">
           <div className="col-12">
             <h1 className="text-center">Sign Up Here!</h1>
           </div>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column mt-5">
             <form>
-                <div className="form-group col-md-7">
+                <div className="form-group col-md-7 m-3">
+                <label>Name</label>
                   <input
                     placeholder="Name"
                     value={this.state.name}
                     onChange={e => this.setState({ name: e.target.value })}
                   />
                 </div>
-                <div className="form-group col-md-7">
+                <div className="form-group col-md-7 m-3">
+                <label>Email</label>
                   <input
                     placeholder="Email"
                     value={this.state.email}
                     onChange={e => this.setState({ email: e.target.value })}
                   />
                 </div>
-                <div className="form-group col-md-7">
+                <div className="form-group col-md-7 m-3">
+                <label>Password</label>
                   <input
                     placeholder="Password"
                     value={this.state.password}
@@ -66,7 +69,7 @@ export default class Register extends React.Component<RegisterProps, RegisterSta
                   />
                 </div>
             </form>
-            <button onClick={this.handleRegister}>Sign Up</button>
+            <button  type="button" className="btn btn-lrg btn-light" onClick={this.handleRegister}>Sign Up</button>
           </div>
         </section>
       </main>

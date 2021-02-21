@@ -30,7 +30,8 @@ export default class AddTask extends React.Component <AddTaskProps, AddTaskState
       <main className="container">
         <section className="row mt-5">
           <div className="col-12">
-            <h1 className="text-center">AddTask View</h1>
+            <input className="form-control mt-5 shadow-sm" type="text" placeholder="What's your task?"></input>
+            <button  type="button" className="btn btn-lrg btn-light mt-3 rounded-sm shadow-sm" onClick={this.addTask}>Add</button>
           </div>
         </section>
       </main>

@@ -14,7 +14,7 @@ export const createToken = async (payload: IPayload) => {
 }
 
 export const validToken = async (token: string) => {
-  console.log(token);
+  // console.log(token);
   let payload: IPayload = <IPayload>jwt.verify(token, config.auth.secret);
   let [accesstokenid] = await db.tokens.findOne(payload.accesstokenid, token);
   if (!accesstokenid) {

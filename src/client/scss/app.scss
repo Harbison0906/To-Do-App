@@ -2,8 +2,38 @@
 //     'primary': #0091ea //Covalence Blue!  :D
 // );
 
-.Link {
-    text-decoration: none;
+html {
+    background-color: #fafaff;
 }
+
+body {
+    background-color: #fafaff !important;
+}
+
+.task {
+    text-decoration: none !important;
+    color: black;
+}
+
+#task-bullet {
+    color: red;
+}
+
+.navbar-container {
+    border-bottom: 1px solid #C2C2C2;
+  }
+
+.nav-btn {
+    background-color: #fafaff;
+    color: #1c1c1c !important;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: #EEF0F2;
+    color: #1c1c1c !important;
+}
+
+
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';

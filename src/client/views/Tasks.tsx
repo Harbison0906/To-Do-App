@@ -29,16 +29,15 @@ export default class Tasks extends React.Component<TasksProps, TasksState> {
       <main className="container">
         <section className="row mt-5">
           <div className="col-12">
-            <h1 className="text-center">Tasks View</h1>
+            <h3 className="mb-5 text-center">Get after it...</h3>
             <>
               {this.state.tasks.map(task => {
                 return (
-                  <div className="card m-2" key={task.id}>
-                    <Link className="Link" to={`/tasks/${task.id}`}>
-                      <div className="card-body">
-                        {task.name}
-                      </div>
-                    </Link>
+                  <div className="mt-2" key={task.id}>
+                    <a className="task" href={`/tasks/${task.id}`}>
+                      <span id="task-bullet">&#9642;</span>  {task.name}
+                    </a>
+                    <hr className="task-separator"></hr>
                   </div>
                 )
               })}

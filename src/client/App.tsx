@@ -11,9 +11,8 @@ import AddTask from './views/addTask';
 
 
 
-export default class App extends React.Component {
+const App: React.SFC<> = props => {
 
-	render() {
 		return (
 			<BrowserRouter>
 			<Navbar />
@@ -28,7 +27,6 @@ export default class App extends React.Component {
 				</Switch>
 			</BrowserRouter>
 		)
-	}
-
 }
 
+export default App;
