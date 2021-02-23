@@ -6,7 +6,7 @@ import { ITask } from '../utils/interfaces';
 interface TasksState {
   tasks: ITask[]
 }
-interface TasksProps extends RouteComponentProps { }
+interface TasksProps extends RouteComponentProps<{ taskid: string }> { }
 
 
 export default class Tasks extends React.Component<TasksProps, TasksState> {
@@ -23,13 +23,21 @@ export default class Tasks extends React.Component<TasksProps, TasksState> {
     console.log(tasks);
   }
 
+  deleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const result = json(`/api/tasks/${this.props.match.params.taskid}`, 'DELETE')
+      .then(details => {
+        console.log(result);
+        this.props.history.push('/tasks')
+      })
+  }
+
 
   render() {
     return (
       <main className="container">
         <section className="row mt-5">
           <div className="col-12">
-            <h3 className="mb-5 text-center">Get after it...</h3>
+            <h3 id="get-after-it" className="mb-5 text-center">Get after it.</h3>
             <>
               {this.state.tasks.map(task => {
                 return (

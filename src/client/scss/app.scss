@@ -8,6 +8,7 @@ html {
 
 body {
     background-color: #fafaff !important;
+    font-family: 'Lato', sans-serif;
 }
 
 .task {
@@ -16,7 +17,7 @@ body {
 }
 
 #task-bullet {
-    color: red;
+    color: #0E3B43;
 }
 
 .navbar-container {
@@ -25,13 +26,24 @@ body {
 
 .nav-btn {
     background-color: #fafaff;
-    color: #1c1c1c !important;
+    color: #0E3B43 !important;
     transition: 0.3s;
 }
 
 .nav-btn:hover {
-    background-color: #EEF0F2;
-    color: #1c1c1c !important;
+    background-color: #0E3B43;
+    color: #fafaff !important;
+}
+
+#logo {
+    font-family: 'Nunito', sans-serif;
+    color: #0E3B43;
+}
+
+#get-after-it {
+    color: #357266;
+    font-family: 'Lato', sans-serif;
+
 }
 
 

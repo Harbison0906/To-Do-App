@@ -30,7 +30,12 @@ export default class AddTask extends React.Component <AddTaskProps, AddTaskState
       <main className="container">
         <section className="row mt-5">
           <div className="col-12">
-            <input className="form-control mt-5 shadow-sm" type="text" placeholder="What's your task?"></input>
+            <input 
+            className="form-control mt-5 shadow-sm" 
+            value={this.state.name}type="text" 
+            placeholder="What's your task?"
+            onChange={e => this.setState({name: e.target.value})}
+            />
             <button  type="button" className="btn btn-lrg btn-light mt-3 rounded-sm shadow-sm" onClick={this.addTask}>Add</button>
           </div>
         </section>
