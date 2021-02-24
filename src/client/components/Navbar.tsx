@@ -22,10 +22,13 @@ export default class Navbar extends React.Component<NavbarProps, NavbarState> {
               </div>
             </div> */}
           </div>
-          <div className="d-flex justify-content-left my-3">
-            <Link to="/tasks"><button type="button" className="btn nav-btn mx-3 rounded-sm">Your Tasks</button></Link>
-            <Link to="/new_task"><button type="button" className="btn nav-btn mx-3 rounded-sm">New Task</button></Link>
-            <Link to="/register"><button type="button" className="btn nav-btn mx-3 rounded-sm">Register</button></Link>
+          <div className="d-flex my-3">
+            <Link to="/tasks"><button type="button" className="btn nav-btn mx-3 rounded-sm text-left">Your Tasks</button></Link>
+            <Link to="/new_task"><button type="button" className="btn nav-btn mx-3 rounded-sm text-left ">New Task</button></Link>
+          </div>
+          <div className="d-flex my-3 justify-content-right">
+          <Link to="/register"><button type="button" className="btn nav-btn mx-3 rounded-sm text-right">Register</button></Link>
+            <Link to="/login"><button type="button" className="btn nav-btn mx-3 rounded-sm text-right">Login</button></Link>
           </div>
         </section>
       </main>

@@ -1,47 +1,47 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { json } from '../utils/api';
+import { useState, useEffect } from 'react';
 
 interface AddTaskState {
   name: string
 }
-interface AddTaskProps extends RouteComponentProps {}
+interface AddTaskProps extends RouteComponentProps { }
 
 
-export default class AddTask extends React.Component <AddTaskProps, AddTaskState> {
-  constructor(props: AddTaskProps) {
-    super(props)
-    this.state = {
-      name: ''
-    };
-  }
+const addTask: React.FC<AddTaskProps> = props => {
 
-  addTask = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const [name, setName] = useState('');
+
+
+  const createTask = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const details = {name: this.state.name};
+    const details = { name: name };
     const results = await json('/api/tasks', 'POST', details);
     console.log(details);
-    this.props.history.push('/tasks')
+    props.history.push('/tasks')
   }
 
 
-  render() {
-    return (
-      <main className="container">
-        <section className="row mt-5">
-          <div className="col-12">
-            <input 
-            className="form-control mt-5 shadow-sm" 
-            value={this.state.name}type="text" 
+
+  return (
+    <main className="container">
+      <section className="row mt-5">
+        <div className="col-12">
+          <input
+            className="form-control mt-5 shadow-sm"
+            value={name} type="text"
             placeholder="What's your task?"
-            onChange={e => this.setState({name: e.target.value})}
-            />
-            <button  type="button" className="btn btn-lrg btn-light mt-3 rounded-sm shadow-sm" onClick={this.addTask}>Add</button>
-          </div>
-        </section>
-      </main>
+            onChange={e => setName(e.target.value)}
+          />
+          <button type="button" className="btn btn-lrg btn-light mt-3 rounded-sm shadow-sm" onClick={createTask}>Add</button>
+        </div>
+      </section>
+    </main>
 
-    )
-  }
+  )
+
 
 }
+
+export default addTask;

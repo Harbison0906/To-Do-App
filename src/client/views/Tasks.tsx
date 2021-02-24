@@ -2,59 +2,54 @@ import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { json } from '../utils/api';
 import { ITask } from '../utils/interfaces';
+import { useState, useEffect } from 'react';
 
-interface TasksState {
-  tasks: ITask[]
-}
+
 interface TasksProps extends RouteComponentProps<{ taskid: string }> { }
 
 
-export default class Tasks extends React.Component<TasksProps, TasksState> {
-  constructor(props: TasksProps) {
-    super(props)
-    this.state = {
-      tasks: []
-    };
-  }
+const Tasks: React.FC<TasksProps> = (props) => {
 
-  async componentDidMount() {
+  const [tasks, setTasks] = useState<ITask[]>([]);
+
+  const getTasks = async () => {
     const tasks = await json('/api/tasks/user_tasks', 'GET');
-    this.setState({ tasks });
+    setTasks(tasks);
     console.log(tasks);
   }
 
-  deleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const result = json(`/api/tasks/${this.props.match.params.taskid}`, 'DELETE')
-      .then(details => {
-        console.log(result);
-        this.props.history.push('/tasks')
-      })
-  }
+  useEffect(() => { getTasks() }, [])
 
+  // deleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   const result = json(`/api/tasks/${this.props.match.params.taskid}`, 'DELETE')
+  //     .then(details => {
+  //       console.log(result);
+  //       this.props.history.push('/tasks')
+  //     })
+  // }
 
-  render() {
-    return (
-      <main className="container">
-        <section className="row mt-5">
-          <div className="col-12">
-            <h3 id="get-after-it" className="mb-5 text-center">Get after it.</h3>
-            <>
-              {this.state.tasks.map(task => {
-                return (
-                  <div className="mt-2" key={task.id}>
-                    <a className="task" href={`/tasks/${task.id}`}>
-                      <span id="task-bullet">&#9642;</span>  {task.name}
-                    </a>
-                    <hr className="task-separator"></hr>
-                  </div>
-                )
-              })}
-            </>
-          </div>
-        </section>
-      </main>
-
-    )
-  }
-
+  return (
+    <main className="container">
+      <section className="row mt-5">
+        <div className="col-12">
+          <h3 id="get-after-it" className="mb-5 text-center">Get after it.</h3>
+          <>
+            {tasks.map(task => {
+              return (
+                <div className="mt-2" key={task.id}>
+                  <a className="task" href={`/tasks/${task.id}`}>
+                    <span id="task-bullet">&#9642;</span>  {task.name}
+                  </a>
+                  <hr className="task-separator"></hr>
+                </div>
+              )
+            })}
+          </>
+        </div>
+      </section>
+    </main>
+  )
 }
+
+export default Tasks;
+
