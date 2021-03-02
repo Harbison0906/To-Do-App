@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-
-interface NavbarState { }
-interface NavbarProps { }
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 
-export default class Navbar extends React.Component<NavbarProps, NavbarState> {
+interface NavbarProps extends RouteComponentProps { }
 
+const Navbar: React.FC <NavbarProps> = props => {
 
-  render() {
+  
     return (
       <main className="container navbar-container mw-100">
         <section className="row mt-5">
           <div className="col-12">
-            <h2 id="logo" className="">GETUIT</h2>
+            <h2 id="logo" className="text-right">GETUIT</h2>
             {/* <div className="dropdown">
               <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -34,6 +32,7 @@ export default class Navbar extends React.Component<NavbarProps, NavbarState> {
       </main>
 
     )
-  }
+  
 
 }
+export default Navbar;

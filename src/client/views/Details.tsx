@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { ITask } from '../utils/interfaces';
 import { json } from '../utils/api';
+import { useState, useEffect } from 'react';
 
 interface DetailsState {
   task: ITask
@@ -9,33 +10,24 @@ interface DetailsState {
 interface DetailsProps extends RouteComponentProps<{ taskid: string }> { }
 
 
-export default class Details extends React.Component<DetailsProps, DetailsState> {
-  constructor(props: DetailsProps) {
-    super(props)
-    this.state = {
-      task: null
-    };
-  }
+const Details: React.FC<DetailsProps> = props => {
+  const [task, setTask] = useState('');
 
-  async componentDidMount() {
-    const task = await json(`/api/tasks/${this.props.match.params.taskid}`, 'GET');
-    this.setState({ task });
-  }
+  const getDetails = async () => {
+    const task = await json(`/api/tasks/${props.match.params.taskid}`, 'GET');
+    setTask({ task });
+  }x
 
-
-  render() {
     return (
       <main className="container">
         <section className="row mt-5 justify-content-center">
           <div className="card m-2">
             <div className="card-body">
-              <h4>{this.state.task?.name}</h4>
+              <h4>{task?.name}</h4>
             </div>
           </div>
         </section>
       </main>
 
     )
-  }
-
 }
