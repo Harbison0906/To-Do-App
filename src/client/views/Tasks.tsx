@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 
 interface TasksProps extends RouteComponentProps<{ taskid: string }> { }
 
-
 const Tasks: React.FC<TasksProps> = (props) => {
 
   const [tasks, setTasks] = useState<ITask[]>([]);

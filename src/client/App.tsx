@@ -11,7 +11,7 @@ import AddTask from './views/addTask';
 
 
 
-const App: React.SFC<> = props => {
+const App: React.FC<> = props => {
 
 		return (
 			<BrowserRouter>
