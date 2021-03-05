@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
-import { json } from '../utils/api';
+import { json, User } from '../utils/api';
 import { ITask } from '../utils/interfaces';
 import { useState, useEffect } from 'react';
 
@@ -11,6 +11,13 @@ const Tasks: React.FC<TasksProps> = (props) => {
 
   const [tasks, setTasks] = useState<ITask[]>([]);
 
+  const checkAuth = async () => {
+    if(!User || User.userid === null || User.role !== 'admin') {
+      props.history.push('/');
+      alert("Oops! Looks like you need to login or register");
+    }
+  }
+
   const getTasks = async () => {
     const tasks = await json('/api/tasks/user_tasks', 'GET');
     setTasks(tasks);
@@ -18,6 +25,7 @@ const Tasks: React.FC<TasksProps> = (props) => {
   }
 
   useEffect(() => { getTasks() }, [])
+  useEffect(() => { checkAuth() }, [])
 
   // deleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   const result = json(`/api/tasks/${this.props.match.params.taskid}`, 'DELETE')

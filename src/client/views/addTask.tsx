@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { json } from '../utils/api';
+import { json, User } from '../utils/api';
 import { useState, useEffect } from 'react';
 
 interface AddTaskState {
@@ -13,6 +13,13 @@ const addTask: React.FC<AddTaskProps> = props => {
 
   const [name, setName] = useState('');
 
+  const checkAuth = async () => {
+    if (!User || User.userid === null || User.role !== 'admin') {
+      props.history.push('/');
+      alert("Oops! Looks like you need to login or register");
+    }
+  }
+
 
   const createTask = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -22,6 +29,7 @@ const addTask: React.FC<AddTaskProps> = props => {
     props.history.push('/tasks')
   }
 
+  useEffect(() => { checkAuth() }, [])
 
 
   return (

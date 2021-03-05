@@ -18,7 +18,7 @@ const App: React.FC<> = props => {
 			<Navbar />
 
 				<Switch>
-					<Route exact path= "/login" component={Login}/>
+					<Route exact path= "/" component={Login}/>
 					<Route exact path= "/register" component={Register}/>
 					<Route exact path= "/profile" component={Profile}/>
 					<Route exact path= "/new_task" component={AddTask}/>

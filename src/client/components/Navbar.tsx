@@ -26,7 +26,7 @@ const Navbar: React.FC <NavbarProps> = props => {
           </div>
           <div className="d-flex my-3 justify-content-right">
           <Link to="/register"><button type="button" className="btn nav-btn mx-3 rounded-sm text-right">Register</button></Link>
-            <Link to="/login"><button type="button" className="btn nav-btn mx-3 rounded-sm text-right">Login</button></Link>
+            <Link to="/"><button type="button" className="btn nav-btn mx-3 rounded-sm text-right">Login</button></Link>
           </div>
         </section>
       </main>
