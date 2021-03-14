@@ -4,15 +4,18 @@ import { json, User } from '../utils/api';
 import { ITask } from '../utils/interfaces';
 import { useState, useEffect } from 'react';
 
+interface TasksState {
+  task: ITask
+}
 
-interface TasksProps extends RouteComponentProps<{ taskid: string }> { }
+interface TasksProps extends RouteComponentProps { }
 
 const Tasks: React.FC<TasksProps> = (props) => {
 
   const [tasks, setTasks] = useState<ITask[]>([]);
 
   const checkAuth = async () => {
-    if(!User || User.userid === null || User.role !== 'admin') {
+    if (!User || User.userid === null || User.role !== 'admin') {
       props.history.push('/');
       alert("Oops! Looks like you need to login or register");
     }
@@ -27,13 +30,7 @@ const Tasks: React.FC<TasksProps> = (props) => {
   useEffect(() => { getTasks() }, [])
   useEffect(() => { checkAuth() }, [])
 
-  // deleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   const result = json(`/api/tasks/${this.props.match.params.taskid}`, 'DELETE')
-  //     .then(details => {
-  //       console.log(result);
-  //       this.props.history.push('/tasks')
-  //     })
-  // }
+
 
   return (
     <main className="container">

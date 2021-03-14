@@ -12,13 +12,6 @@ const Navbar: React.FC <NavbarProps> = props => {
         <section className="row mt-5">
           <div className="col-12">
             <h2 id="logo" className="text-right">GETUIT</h2>
-            {/* <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">Your Profile</a>
-                <a className="dropdown-item" href="#">Add a Task</a>
-              </div>
-            </div> */}
           </div>
           <div className="d-flex my-3">
             <Link to="/tasks"><button type="button" className="btn nav-btn mx-3 rounded-sm text-left">Your Tasks</button></Link>
