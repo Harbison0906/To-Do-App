@@ -11,7 +11,7 @@ interface AdminProps extends RouteComponentProps<{ taskid: string }> { }
 
 const Admin: React.FC<AdminProps> = props => {
 
-  const [task, setTask] = useState<ITask>({});
+  const [task, setTask] = useState<ITask>();
 
   const checkAuth = async () => {
     if (!User || User.userid === null || User.role !== 'admin') {
@@ -21,14 +21,14 @@ const Admin: React.FC<AdminProps> = props => {
   }
 
   const getDetails = async () => {
-    const task = await json(`/api/tasks/${props.match.params.taskid}`, 'GET');
+    const task = await json<ITask>(`/api/tasks/${props.match.params.taskid}`, 'GET');
     setTask(task);
   }
 
-  const editTask = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const editTask = (e?: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const details = {task}
-    json(`/api/books/${props.match.params.taskid}`, 'PUT', details)
+    const details = {task: task}
+    json(`/api/tasks/${props.match.params.taskid}`, 'PUT', details)
     console.log(details)
     props.history.push(`/details/${props.match.params.taskid}`);
   }
@@ -59,9 +59,10 @@ const Admin: React.FC<AdminProps> = props => {
             className="form-control mt-5 shadow-sm"
             value={task.name} type="text"
             placeholder={task.name}
-          onChange={e => setTask(task: e.target.value)}
+          onChange={e => setTask({task: e.target.value})}
           />
-          <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={deleteTask}>Add</button>
+          <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={deleteTask}>Delete</button>
+          <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={editTask}>Add</button>
       </section>
     </main>
   )
