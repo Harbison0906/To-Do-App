@@ -25,12 +25,11 @@ const Admin: React.FC<AdminProps> = props => {
     setTask(task);
   }
 
-  const editTask = (e?: React.MouseEvent<HTMLButtonElement>) => {
+  const editTask = async (e?: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const details = {task: task}
-    json(`/api/tasks/${props.match.params.taskid}`, 'PUT', details)
-    console.log(details)
-    props.history.push(`/details/${props.match.params.taskid}`);
+    await json(`/api/tasks/${props.match.params.taskid}`, 'PUT', task)
+    console.log(task)
+    props.history.push('/tasks');
   }
 
   const deleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,26 +42,18 @@ const Admin: React.FC<AdminProps> = props => {
 
   useEffect(() => { getDetails() }, [])
   useEffect(() => { checkAuth() }, [])
-  useEffect(() => { editTask() }, [])
 
   return (
     <main className="container">
       <section className="row mt-5 justify-content-center">
-        {/* <div className="mt-2" key={task.id}>
-          <p className="task">
-            {task.name}
-          </p>
-          <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={deleteTask}>Done</button>
-          <hr className="task-separator"></hr>
-        </div> */}
         <input
-            className="form-control mt-5 shadow-sm"
-            value={task.name} type="text"
-            placeholder={task.name}
-          onChange={e => setTask({task: e.target.value})}
-          />
-          <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={deleteTask}>Delete</button>
-          <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={editTask}>Add</button>
+          className="form-control mt-5 shadow-sm"
+          value={task?.name || ' '} type="text"
+          placeholder={task?.name}
+          onChange={e => setTask({ id: task.id, name: e.target.value, userid: task.userid })}
+        />
+        <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={deleteTask}>Delete</button>
+        <button type="button" className="btn btn-sm btn-light mt-3 rounded-sm shadow-sm" onClick={editTask}>Save Changes</button>
       </section>
     </main>
   )

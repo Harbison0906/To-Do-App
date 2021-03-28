@@ -50,7 +50,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
                 onChange={e => this.setState({password: e.target.value}) }
                 />
               </form>
-              <button onClick={this.handleLogin}>Login</button>
+              <button className="btn btn-lrg btn-light mt-3 rounded-sm shadow-sm" onClick={this.handleLogin}>Login</button>
           </div>
         </section>
       </main>

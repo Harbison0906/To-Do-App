@@ -6,7 +6,7 @@ interface NavbarProps extends RouteComponentProps { }
 
 const Navbar: React.FC <NavbarProps> = props => {
 
-  
+
     return (
       <main className="container navbar-container mw-100">
         <section className="row mt-5">
