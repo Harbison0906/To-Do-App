@@ -13,18 +13,19 @@ interface RegisterProps extends RouteComponentProps { }
 
 const Register: React.FC<RegisterProps> = props => {
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState('user')
+  const [email, setEmail] = useState('user@test.com')
+  const [password, setPassword] = useState('password123')
 
-  const handleRegister = async (e?: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRegister = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      let result = await json('/auth/register', 'POST', {email, password, name});
+      let result = await json('/auth/register', 'POST', { email, password, name });
       if (result) {
-        SetAccessToken(result.token, { userid: result.userid, role: result.role });
         console.log(result);
-        props.history.push('/new_task');
+        SetAccessToken(result.token, { userid: result.userid, role: result.role });
+        console.log(result.userid, result.role);
+        // props.history.push('/new_task');
       }
     } catch (error) {
       throw error;

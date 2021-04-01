@@ -53,8 +53,8 @@ export const SetAccessToken = (
 ) => {
   AccessToken = token;
   User = user;
-
   localStorage.setItem('token', token);
   localStorage.setItem('userid', User.userid);
   localStorage.setItem('role', User.role);
+  console.log(User);
 };
